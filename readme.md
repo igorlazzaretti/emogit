@@ -1,8 +1,17 @@
-## Emoji list
+<!-- 
+Git Commit
+:sparkles: Emogit 2.0
+Commit Message: Emogit 2.0
+:sparkles: Emogit 2.0
+Commit Message: Emogit 2.0
+ -->
+
+
+## Emogit: Emoji list
 
 Você encontrou sua lista completa de emojis para usar nos seus commits. Por exemplo:
 
-    git commit -m ":pray: Socorroo!!"
+    git commit -m "✨ :sparkles: Adiciona nova funcionalidade!"
 
 
 

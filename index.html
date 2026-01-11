@@ -4,473 +4,677 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Emojis para Git</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 70vw;
-            margin: 0 auto;
-            padding: 20px;
-            line-height: 1.6;
-            background-color: #ffffff;
-            color: #000000;
-            transition: background-color 0.3s, color 0.3s;
-        }
-
-        body.dark-mode {
-            background-color: #121212;
-            color: #ffffff;
-        }
-
-        header {
-            text-align: center;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid #eee;
-        }
-
-        header .dark-mode-toggle {
-            cursor: pointer;
-            font-size: 1.5rem;
-            margin-left: 10px;
-        }
-
-        h2 {
-            margin-top: 30px;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-
-        th,
-        td {
-            text-align: left;
-            padding: 8px;
-            border-bottom: 1px solid #eee;
-            position: relative;
-        }
-
-        th {
-            background-color: #f8f8f8;
-        }
-
-        body.dark-mode th {
-            background-color: #333333;
-        }
-
-        .copy-icon {
-            cursor: pointer;
-            font-size: 1rem;
-            margin-left: 5px;
-            color: #0366d6;
-        }
-
-        .copy-icon:hover {
-            color: #024ea2;
-        }
-
-        .alert {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            padding: 10px 20px;
-            background-color: #28a745;
-            color: #ffffff;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-            z-index: 1000;
-        }
-
-        .alert-success {
-            background-color: #28a745;
-        }
-
-        #top {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: transparent;
-            color: white;
-            border-radius: 5px;
-            border-color: transparent;
-            cursor: pointer;
-            display: none;
-            font-size: 2rem;
-            /* Hidden by default */
-        }
-
-        #top:hover {
-            transform: scale(1.1);
-        }
-    </style>
+    <meta name="description"
+        content="Lista completa de emojis para usar em commits Git. Copie e cole facilmente com tema dark/light.">
+    <meta name="keywords" content="git, emoji, commits, github, desenvolvimento">
+    <meta name="author" content="Igor Lazzaretti">
+    <title>Emojis para Git - Guia Completo</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-    <!-- Div que é um botão sticky para voltar ao topo #top -->
-    <button id="top" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">⬆️</button>
 
-    <header>
-        <h1>
-            Lista de Emojis para Git
-            <span class="dark-mode-toggle" onclick="toggleDarkMode()">🌙</span>
-        </h1>
-        <p>
-            <a href="https://igorlazzaretti.com" target="_blank">igorlazzaretti.com</a> |
-            <a href="https://linkedin.com/in/" target="_blank">LinkedIn</a>
+    <!-- Main Content -->
+
+    <!-- Reading Bar -->
+    <div class="reading-bar">
+        <div class="reading-progress" id="readingProgress"></div>
+    </div>
+
+    <div class="container">
+        <!-- Hero Section -->
+        <section class="hero">
+            <h1>✨ Emojis para Git Commits</h1>
+            <p>Torne seus commits mais expressivos e organizados com emojis padronizados. Copie e cole facilmente!</p>
+        </section>
+
+        <!-- Code Example -->
+        <div class="code-example">
+            <pre><code>git commit -m "✨ :sparkles: Adiciona nova funcionalidade"</code></pre>
+        </div>
+
+        <!-- Git Commits Section -->
+        <section class="section">
+            <div class="section-header">
+                <h2>🎯 Emojis para Commits Git</h2>
+            </div>
+            <p class="section-subtitle">
+                📋 Clique no ícone de copiar para adicionar o código ao clipboard
+            </p>
+
+            <!-- Search Box -->
+            <div class="search-box">
+                <input type="text" class="search-input" id="searchCommits" placeholder="🔍 Buscar emoji ou descrição..."
+                    oninput="filterTable('commitsTable', this.value)" autocomplete="off">
+            </div>
+
+            <!-- Commits Table -->
+            <table class="emoji-table" id="commitsTable">
+                <thead>
+                    <tr>
+                        <th>Tipo</th>
+                        <th>Descrição</th>
+                        <th>Emoji</th>
+                        <th>Ação</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td data-label="Tipo"><strong>Initial Commit</strong></td>
+                        <td data-label="Descrição">Commit Inicial</td>
+                        <td data-label="Emoji">🎉 <code>:tada:</code></td>
+                        <td data-label="Ação"><button class="copy-btn" onclick="copyToClipboard(':tada:')"
+                                aria-label="Copiar :tada:">📋</button></td>
+                    </tr>
+                    <tr>
+                        <td data-label="Tipo"><strong>Version Tag</strong></td>
+                        <td data-label="Descrição">Tag de Versão</td>
+                        <td data-label="Emoji">🔖 <code>:bookmark:</code></td>
+                        <td data-label="Ação"><button class="copy-btn" onclick="copyToClipboard(':bookmark:')"
+                                aria-label="Copiar :bookmark:">📋</button></td>
+                    </tr>
+                    <tr>
+                        <td data-label="Tipo"><strong>New Feature</strong></td>
+                        <td data-label="Descrição">Nova Funcionalidade</td>
+                        <td data-label="Emoji">✨ <code>:sparkles:</code></td>
+                        <td data-label="Ação"><button class="copy-btn" onclick="copyToClipboard(':sparkles:')"
+                                aria-label="Copiar :sparkles:">📋</button></td>
+                    </tr>
+                    <tr>
+                        <td data-label="Tipo"><strong>Bug Fix</strong></td>
+                        <td data-label="Descrição">Correção de Bug</td>
+                        <td data-label="Emoji">🐛 <code>:bug:</code></td>
+                        <td data-label="Ação"><button class="copy-btn" onclick="copyToClipboard(':bug:')"
+                                aria-label="Copiar :bug:">📋</button></td>
+                    </tr>
+                    <tr>
+                        <td data-label="Tipo"><strong>Metadata</strong></td>
+                        <td data-label="Descrição">Metadados</td>
+                        <td data-label="Emoji">📇 <code>:card_index:</code></td>
+                        <td data-label="Ação"><button class="copy-btn" onclick="copyToClipboard(':card_index:')"
+                                aria-label="Copiar :card_index:">📋</button></td>
+                    </tr>
+                    <tr>
+                        <td data-label="Tipo"><strong>Documentation</strong></td>
+                        <td data-label="Descrição">Documentação</td>
+                        <td data-label="Emoji">📚 <code>:books:</code></td>
+                        <td data-label="Ação"><button class="copy-btn" onclick="copyToClipboard(':books:')"
+                                aria-label="Copiar :books:">📋</button></td>
+                    </tr>
+                    <tr>
+                        <td data-label="Tipo"><strong>Documenting Source Code</strong></td>
+                        <td data-label="Descrição">Documentando Código Fonte</td>
+                        <td data-label="Emoji">💡 <code>:bulb:</code></td>
+                        <td data-label="Ação"><button class="copy-btn" onclick="copyToClipboard(':bulb:')"
+                                aria-label="Copiar :bulb:">📋</button></td>
+                    </tr>
+                    <tr>
+                        <td data-label="Tipo"><strong>Performance</strong></td>
+                        <td data-label="Descrição">Desempenho</td>
+                        <td data-label="Emoji">🐎 <code>:racehorse:</code></td>
+                        <td data-label="Ação"><button class="copy-btn" onclick="copyToClipboard(':racehorse:')"
+                                aria-label="Copiar :racehorse:">📋</button></td>
+                    </tr>
+                    <tr>
+                        <td data-label="Tipo"><strong>Style</strong></td>
+                        <td data-label="Descrição">Estética</td>
+                        <td data-label="Emoji">💄 <code>:lipstick:</code></td>
+                        <td data-label="Ação"><button class="copy-btn" onclick="copyToClipboard(':lipstick:')"
+                                aria-label="Copiar :lipstick:">📋</button></td>
+                    </tr>
+                    <tr>
+                        <td data-label="Tipo"><strong>Tests</strong></td>
+                        <td data-label="Descrição">Testes</td>
+                        <td data-label="Emoji">🚨 <code>:rotating_light:</code></td>
+                        <td data-label="Ação"><button class="copy-btn" onclick="copyToClipboard(':rotating_light:')"
+                                aria-label="Copiar :rotating_light:">📋</button></td>
+                    </tr>
+                    <tr>
+                        <td data-label="Tipo"><strong>Adding Tests</strong></td>
+                        <td data-label="Descrição">Adicionando Teste</td>
+                        <td data-label="Emoji">✅ <code>:white_check_mark:</code></td>
+                        <td data-label="Ação"><button class="copy-btn" onclick="copyToClipboard(':white_check_mark:')"
+                                aria-label="Copiar :white_check_mark:">📋</button></td>
+                    </tr>
+                    <tr>
+                        <td data-label="Tipo"><strong>Fixing Tests</strong></td>
+                        <td data-label="Descrição">Corrigindo Teste</td>
+                        <td data-label="Emoji">✔️ <code>:heavy_check_mark:</code></td>
+                        <td data-label="Ação"><button class="copy-btn" onclick="copyToClipboard(':heavy_check_mark:')"
+                                aria-label="Copiar :heavy_check_mark:">📋</button></td>
+                    </tr>
+                    <tr>
+                        <td data-label="Tipo"><strong>General Update</strong></td>
+                        <td data-label="Descrição">Atualização Geral</td>
+                        <td data-label="Emoji">⚡ <code>:zap:</code></td>
+                        <td data-label="Ação"><button class="copy-btn" onclick="copyToClipboard(':zap:')"
+                                aria-label="Copiar :zap:">📋</button></td>
+                    </tr>
+                    <tr>
+                        <td data-label="Tipo"><strong>Improve Format/Structure</strong></td>
+                        <td data-label="Descrição">Melhorar Formato/Estrutura</td>
+                        <td data-label="Emoji">🎨 <code>:art:</code></td>
+                        <td data-label="Ação"><button class="copy-btn" onclick="copyToClipboard(':art:')"
+                                aria-label="Copiar :art:">📋</button></td>
+                    </tr>
+                    <tr>
+                        <td data-label="Tipo"><strong>Code Refactoring</strong></td>
+                        <td data-label="Descrição">Refatoração de Código</td>
+                        <td data-label="Emoji">🔨 <code>:hammer:</code></td>
+                        <td data-label="Ação"><button class="copy-btn" onclick="copyToClipboard(':hammer:')"
+                                aria-label="Copiar :hammer:">📋</button></td>
+                    </tr>
+                    <tr>
+                        <td data-label="Tipo"><strong>Removing Code/Files</strong></td>
+                        <td data-label="Descrição">Removendo Código/Arquivos</td>
+                        <td data-label="Emoji">🔥 <code>:fire:</code></td>
+                        <td data-label="Ação"><button class="copy-btn" onclick="copyToClipboard(':fire:')"
+                                aria-label="Copiar :fire:">📋</button></td>
+                    </tr>
+                    <tr>
+                        <td data-label="Tipo"><strong>Continuous Integration</strong></td>
+                        <td data-label="Descrição">Integração Contínua</td>
+                        <td data-label="Emoji">💚 <code>:green_heart:</code></td>
+                        <td data-label="Ação"><button class="copy-btn" onclick="copyToClipboard(':green_heart:')"
+                                aria-label="Copiar :green_heart:">📋</button></td>
+                    </tr>
+                    <tr>
+                        <td data-label="Tipo"><strong>Security</strong></td>
+                        <td data-label="Descrição">Segurança</td>
+                        <td data-label="Emoji">🔒 <code>:lock:</code></td>
+                        <td data-label="Ação"><button class="copy-btn" onclick="copyToClipboard(':lock:')"
+                                aria-label="Copiar :lock:">📋</button></td>
+                    </tr>
+                    <tr>
+                        <td data-label="Tipo"><strong>Updating Dependencies</strong></td>
+                        <td data-label="Descrição">Atualizando Dependências</td>
+                        <td data-label="Emoji">⬆️ <code>:arrow_up:</code></td>
+                        <td data-label="Ação"><button class="copy-btn" onclick="copyToClipboard(':arrow_up:')"
+                                aria-label="Copiar :arrow_up:">📋</button></td>
+                    </tr>
+                    <tr>
+                        <td data-label="Tipo"><strong>Downgrading Dependencies</strong></td>
+                        <td data-label="Descrição">Rebaixando Dependências</td>
+                        <td data-label="Emoji">⬇️ <code>:arrow_down:</code></td>
+                        <td data-label="Ação"><button class="copy-btn" onclick="copyToClipboard(':arrow_down:')"
+                                aria-label="Copiar :arrow_down:">📋</button></td>
+                    </tr>
+                    <tr>
+                        <td data-label="Tipo"><strong>Lint</strong></td>
+                        <td data-label="Descrição">Lint</td>
+                        <td data-label="Emoji">👕 <code>:shirt:</code></td>
+                        <td data-label="Ação"><button class="copy-btn" onclick="copyToClipboard(':shirt:')"
+                                aria-label="Copiar :shirt:">📋</button></td>
+                    </tr>
+                    <tr>
+                        <td data-label="Tipo"><strong>Translation</strong></td>
+                        <td data-label="Descrição">Tradução</td>
+                        <td data-label="Emoji">👽 <code>:alien:</code></td>
+                        <td data-label="Ação"><button class="copy-btn" onclick="copyToClipboard(':alien:')"
+                                aria-label="Copiar :alien:">📋</button></td>
+                    </tr>
+                    <tr>
+                        <td data-label="Tipo"><strong>Text</strong></td>
+                        <td data-label="Descrição">Texto</td>
+                        <td data-label="Emoji">✏️ <code>:pencil:</code></td>
+                        <td data-label="Ação"><button class="copy-btn" onclick="copyToClipboard(':pencil:')"
+                                aria-label="Copiar :pencil:">📋</button></td>
+                    </tr>
+                    <tr>
+                        <td data-label="Tipo"><strong>Critical Hotfix</strong></td>
+                        <td data-label="Descrição">Hotfix Crítico</td>
+                        <td data-label="Emoji">🚑 <code>:ambulance:</code></td>
+                        <td data-label="Ação"><button class="copy-btn" onclick="copyToClipboard(':ambulance:')"
+                                aria-label="Copiar :ambulance:">📋</button></td>
+                    </tr>
+                    <tr>
+                        <td data-label="Tipo"><strong>Deploy</strong></td>
+                        <td data-label="Descrição">Deploy</td>
+                        <td data-label="Emoji">🚀 <code>:rocket:</code></td>
+                        <td data-label="Ação"><button class="copy-btn" onclick="copyToClipboard(':rocket:')"
+                                aria-label="Copiar :rocket:">📋</button></td>
+                    </tr>
+                    <tr>
+                        <td data-label="Tipo"><strong>Fixing on macOS</strong></td>
+                        <td data-label="Descrição">Corrigindo no MacOS</td>
+                        <td data-label="Emoji">🍎 <code>:apple:</code></td>
+                        <td data-label="Ação"><button class="copy-btn" onclick="copyToClipboard(':apple:')"
+                                aria-label="Copiar :apple:">📋</button></td>
+                    </tr>
+                    <tr>
+                        <td data-label="Tipo"><strong>Fixing on Linux</strong></td>
+                        <td data-label="Descrição">Corrigindo no Linux</td>
+                        <td data-label="Emoji">🐧 <code>:penguin:</code></td>
+                        <td data-label="Ação"><button class="copy-btn" onclick="copyToClipboard(':penguin:')"
+                                aria-label="Copiar :penguin:">📋</button></td>
+                    </tr>
+                    <tr>
+                        <td data-label="Tipo"><strong>Fixing on Windows</strong></td>
+                        <td data-label="Descrição">Corrigindo no Windows</td>
+                        <td data-label="Emoji">🏁 <code>:checkered_flag:</code></td>
+                        <td data-label="Ação"><button class="copy-btn" onclick="copyToClipboard(':checkered_flag:')"
+                                aria-label="Copiar :checkered_flag:">📋</button></td>
+                    </tr>
+                    <tr>
+                        <td data-label="Tipo"><strong>Work in Progress</strong></td>
+                        <td data-label="Descrição">Trabalho em Progresso</td>
+                        <td data-label="Emoji">🚧 <code>:construction:</code></td>
+                        <td data-label="Ação"><button class="copy-btn" onclick="copyToClipboard(':construction:')"
+                                aria-label="Copiar :construction:">📋</button></td>
+                    </tr>
+                    <tr>
+                        <td data-label="Tipo"><strong>Adding CI Build System</strong></td>
+                        <td data-label="Descrição">Adicionando Sistema de Build CI</td>
+                        <td data-label="Emoji">👷 <code>:construction_worker:</code></td>
+                        <td data-label="Ação"><button class="copy-btn"
+                                onclick="copyToClipboard(':construction_worker:')"
+                                aria-label="Copiar :construction_worker:">📋</button></td>
+                    </tr>
+                    <tr>
+                        <td data-label="Tipo"><strong>Analytics/Tracking Code</strong></td>
+                        <td data-label="Descrição">Código de Análise/Rastreamento</td>
+                        <td data-label="Emoji">📈 <code>:chart_with_upwards_trend:</code></td>
+                        <td data-label="Ação"><button class="copy-btn"
+                                onclick="copyToClipboard(':chart_with_upwards_trend:')"
+                                aria-label="Copiar :chart_with_upwards_trend:">📋</button></td>
+                    </tr>
+                    <tr>
+                        <td data-label="Tipo"><strong>Removing Dependency</strong></td>
+                        <td data-label="Descrição">Removendo Dependência</td>
+                        <td data-label="Emoji">➖ <code>:heavy_minus_sign:</code></td>
+                        <td data-label="Ação"><button class="copy-btn" onclick="copyToClipboard(':heavy_minus_sign:')"
+                                aria-label="Copiar :heavy_minus_sign:">📋</button></td>
+                    </tr>
+                    <tr>
+                        <td data-label="Tipo"><strong>Adding Dependency</strong></td>
+                        <td data-label="Descrição">Adicionando Dependência</td>
+                        <td data-label="Emoji">➕ <code>:heavy_plus_sign:</code></td>
+                        <td data-label="Ação"><button class="copy-btn" onclick="copyToClipboard(':heavy_plus_sign:')"
+                                aria-label="Copiar :heavy_plus_sign:">📋</button></td>
+                    </tr>
+                    <tr>
+                        <td data-label="Tipo"><strong>Docker</strong></td>
+                        <td data-label="Descrição">Docker</td>
+                        <td data-label="Emoji">🐋 <code>:whale:</code></td>
+                        <td data-label="Ação"><button class="copy-btn" onclick="copyToClipboard(':whale:')"
+                                aria-label="Copiar :whale:">📋</button></td>
+                    </tr>
+                    <tr>
+                        <td data-label="Tipo"><strong>Configuration Files</strong></td>
+                        <td data-label="Descrição">Arquivos de Configuração</td>
+                        <td data-label="Emoji">🔧 <code>:wrench:</code></td>
+                        <td data-label="Ação"><button class="copy-btn" onclick="copyToClipboard(':wrench:')"
+                                aria-label="Copiar :wrench:">📋</button></td>
+                    </tr>
+                    <tr>
+                        <td data-label="Tipo"><strong>Package.json</strong></td>
+                        <td data-label="Descrição">Package.json no JS</td>
+                        <td data-label="Emoji">📦 <code>:package:</code></td>
+                        <td data-label="Ação"><button class="copy-btn" onclick="copyToClipboard(':package:')"
+                                aria-label="Copiar :package:">📋</button></td>
+                    </tr>
+                    <tr>
+                        <td data-label="Tipo"><strong>Merging Branches</strong></td>
+                        <td data-label="Descrição">Mesclando Branches</td>
+                        <td data-label="Emoji">🔀 <code>:twisted_rightwards_arrows:</code></td>
+                        <td data-label="Ação"><button class="copy-btn"
+                                onclick="copyToClipboard(':twisted_rightwards_arrows:')"
+                                aria-label="Copiar :twisted_rightwards_arrows:">📋</button></td>
+                    </tr>
+                    <tr>
+                        <td data-label="Tipo"><strong>Bad Code/Needs Improvement</strong></td>
+                        <td data-label="Descrição">Código Ruim/Precisa Melhorar</td>
+                        <td data-label="Emoji">💩 <code>:hankey:</code></td>
+                        <td data-label="Ação"><button class="copy-btn" onclick="copyToClipboard(':hankey:')"
+                                aria-label="Copiar :hankey:">📋</button></td>
+                    </tr>
+                    <tr>
+                        <td data-label="Tipo"><strong>Reverting Changes</strong></td>
+                        <td data-label="Descrição">Revertendo Mudanças</td>
+                        <td data-label="Emoji">⏪ <code>:rewind:</code></td>
+                        <td data-label="Ação"><button class="copy-btn" onclick="copyToClipboard(':rewind:')"
+                                aria-label="Copiar :rewind:">📋</button></td>
+                    </tr>
+                    <tr>
+                        <td data-label="Tipo"><strong>Breaking Changes</strong></td>
+                        <td data-label="Descrição">Mudanças Quebrando o Código</td>
+                        <td data-label="Emoji">💥 <code>:boom:</code></td>
+                        <td data-label="Ação"><button class="copy-btn" onclick="copyToClipboard(':boom:')"
+                                aria-label="Copiar :boom:">📋</button></td>
+                    </tr>
+                    <tr>
+                        <td data-label="Tipo"><strong>After Code Review</strong></td>
+                        <td data-label="Descrição">Mudanças após Code Review</td>
+                        <td data-label="Emoji">👌 <code>:ok_hand:</code></td>
+                        <td data-label="Ação"><button class="copy-btn" onclick="copyToClipboard(':ok_hand:')"
+                                aria-label="Copiar :ok_hand:">📋</button></td>
+                    </tr>
+                    <tr>
+                        <td data-label="Tipo"><strong>Accessibility</strong></td>
+                        <td data-label="Descrição">Acessibilidade</td>
+                        <td data-label="Emoji">♿ <code>:wheelchair:</code></td>
+                        <td data-label="Ação"><button class="copy-btn" onclick="copyToClipboard(':wheelchair:')"
+                                aria-label="Copiar :wheelchair:">📋</button></td>
+                    </tr>
+                    <tr>
+                        <td data-label="Tipo"><strong>Move/Rename Repository</strong></td>
+                        <td data-label="Descrição">Mover/Renomear Repositório</td>
+                        <td data-label="Emoji">🚚 <code>:truck:</code></td>
+                        <td data-label="Ação"><button class="copy-btn" onclick="copyToClipboard(':truck:')"
+                                aria-label="Copiar :truck:">📋</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Complete Emoji List Section -->
+        <section class="section">
+            <div class="section-header">
+                <h2>😀 Lista Completa de Emojis</h2>
+            </div>
+            <p class="section-subtitle">
+                📋 Clique no card para copiar o código
+            </p>
+
+            <!-- Search Box -->
+            <div class="search-box">
+                <input type="text" class="search-input" id="searchEmojis" placeholder="🔍 Buscar emoji..."
+                    oninput="filterEmojis(this.value)" autocomplete="off">
+            </div>
+
+            <!-- Emoji Grid -->
+            <div class="emoji-grid" id="emojiGrid">
+                <div class="emoji-card" onclick="copyToClipboard(':smile:')">
+                    <div class="emoji-icon">😄</div>
+                    <div class="emoji-info">
+                        <div class="emoji-code">:smile:</div>
+                    </div>
+                    <button class="copy-btn" onclick="event.stopPropagation(); copyToClipboard(':smile:')">📋</button>
+                </div>
+                <div class="emoji-card" onclick="copyToClipboard(':laughing:')">
+                    <div class="emoji-icon">😆</div>
+                    <div class="emoji-info">
+                        <div class="emoji-code">:laughing:</div>
+                    </div>
+                    <button class="copy-btn"
+                        onclick="event.stopPropagation(); copyToClipboard(':laughing:')">📋</button>
+                </div>
+                <div class="emoji-card" onclick="copyToClipboard(':blush:')">
+                    <div class="emoji-icon">😊</div>
+                    <div class="emoji-info">
+                        <div class="emoji-code">:blush:</div>
+                    </div>
+                    <button class="copy-btn" onclick="event.stopPropagation(); copyToClipboard(':blush:')">📋</button>
+                </div>
+                <div class="emoji-card" onclick="copyToClipboard(':smiley:')">
+                    <div class="emoji-icon">😃</div>
+                    <div class="emoji-info">
+                        <div class="emoji-code">:smiley:</div>
+                    </div>
+                    <button class="copy-btn" onclick="event.stopPropagation(); copyToClipboard(':smiley:')">📋</button>
+                </div>
+                <div class="emoji-card" onclick="copyToClipboard(':relaxed:')">
+                    <div class="emoji-icon">☺️</div>
+                    <div class="emoji-info">
+                        <div class="emoji-code">:relaxed:</div>
+                    </div>
+                    <button class="copy-btn" onclick="event.stopPropagation(); copyToClipboard(':relaxed:')">📋</button>
+                </div>
+                <div class="emoji-card" onclick="copyToClipboard(':smirk:')">
+                    <div class="emoji-icon">😏</div>
+                    <div class="emoji-info">
+                        <div class="emoji-code">:smirk:</div>
+                    </div>
+                    <button class="copy-btn" onclick="event.stopPropagation(); copyToClipboard(':smirk:')">📋</button>
+                </div>
+                <div class="emoji-card" onclick="copyToClipboard(':heart_eyes:')">
+                    <div class="emoji-icon">😍</div>
+                    <div class="emoji-info">
+                        <div class="emoji-code">:heart_eyes:</div>
+                    </div>
+                    <button class="copy-btn"
+                        onclick="event.stopPropagation(); copyToClipboard(':heart_eyes:')">📋</button>
+                </div>
+                <div class="emoji-card" onclick="copyToClipboard(':kissing_heart:')">
+                    <div class="emoji-icon">😘</div>
+                    <div class="emoji-info">
+                        <div class="emoji-code">:kissing_heart:</div>
+                    </div>
+                    <button class="copy-btn"
+                        onclick="event.stopPropagation(); copyToClipboard(':kissing_heart:')">📋</button>
+                </div>
+                <div class="emoji-card" onclick="copyToClipboard(':kissing_closed_eyes:')">
+                    <div class="emoji-icon">😚</div>
+                    <div class="emoji-info">
+                        <div class="emoji-code">:kissing_closed_eyes:</div>
+                    </div>
+                    <button class="copy-btn"
+                        onclick="event.stopPropagation(); copyToClipboard(':kissing_closed_eyes:')">📋</button>
+                </div>
+                <div class="emoji-card" onclick="copyToClipboard(':flushed:')">
+                    <div class="emoji-icon">😳</div>
+                    <div class="emoji-info">
+                        <div class="emoji-code">:flushed:</div>
+                    </div>
+                    <button class="copy-btn" onclick="event.stopPropagation(); copyToClipboard(':flushed:')">📋</button>
+                </div>
+                <div class="emoji-card" onclick="copyToClipboard(':relieved:')">
+                    <div class="emoji-icon">😌</div>
+                    <div class="emoji-info">
+                        <div class="emoji-code">:relieved:</div>
+                    </div>
+                    <button class="copy-btn"
+                        onclick="event.stopPropagation(); copyToClipboard(':relieved:')">📋</button>
+                </div>
+                <div class="emoji-card" onclick="copyToClipboard(':grin:')">
+                    <div class="emoji-icon">😁</div>
+                    <div class="emoji-info">
+                        <div class="emoji-code">:grin:</div>
+                    </div>
+                    <button class="copy-btn" onclick="event.stopPropagation(); copyToClipboard(':grin:')">📋</button>
+                </div>
+                <div class="emoji-card" onclick="copyToClipboard(':wink:')">
+                    <div class="emoji-icon">😉</div>
+                    <div class="emoji-info">
+                        <div class="emoji-code">:wink:</div>
+                    </div>
+                    <button class="copy-btn" onclick="event.stopPropagation(); copyToClipboard(':wink:')">📋</button>
+                </div>
+                <div class="emoji-card" onclick="copyToClipboard(':stuck_out_tongue_winking_eye:')">
+                    <div class="emoji-icon">😜</div>
+                    <div class="emoji-info">
+                        <div class="emoji-code">:stuck_out_tongue_winking_eye:</div>
+                    </div>
+                    <button class="copy-btn"
+                        onclick="event.stopPropagation(); copyToClipboard(':stuck_out_tongue_winking_eye:')">📋</button>
+                </div>
+                <div class="emoji-card" onclick="copyToClipboard(':stuck_out_tongue_closed_eyes:')">
+                    <div class="emoji-icon">😝</div>
+                    <div class="emoji-info">
+                        <div class="emoji-code">:stuck_out_tongue_closed_eyes:</div>
+                    </div>
+                    <button class="copy-btn"
+                        onclick="event.stopPropagation(); copyToClipboard(':stuck_out_tongue_closed_eyes:')">📋</button>
+                </div>
+                <div class="emoji-card" onclick="copyToClipboard(':grinning:')">
+                    <div class="emoji-icon">😀</div>
+                    <div class="emoji-info">
+                        <div class="emoji-code">:grinning:</div>
+                    </div>
+                    <button class="copy-btn"
+                        onclick="event.stopPropagation(); copyToClipboard(':grinning:')">📋</button>
+                </div>
+                <div class="emoji-card" onclick="copyToClipboard(':kissing:')">
+                    <div class="emoji-icon">😗</div>
+                    <div class="emoji-info">
+                        <div class="emoji-code">:kissing:</div>
+                    </div>
+                    <button class="copy-btn" onclick="event.stopPropagation(); copyToClipboard(':kissing:')">📋</button>
+                </div>
+                <div class="emoji-card" onclick="copyToClipboard(':kissing_smiling_eyes:')">
+                    <div class="emoji-icon">😙</div>
+                    <div class="emoji-info">
+                        <div class="emoji-code">:kissing_smiling_eyes:</div>
+                    </div>
+                    <button class="copy-btn"
+                        onclick="event.stopPropagation(); copyToClipboard(':kissing_smiling_eyes:')">📋</button>
+                </div>
+                <div class="emoji-card" onclick="copyToClipboard(':stuck_out_tongue:')">
+                    <div class="emoji-icon">😛</div>
+                    <div class="emoji-info">
+                        <div class="emoji-code">:stuck_out_tongue:</div>
+                    </div>
+                    <button class="copy-btn"
+                        onclick="event.stopPropagation(); copyToClipboard(':stuck_out_tongue:')">📋</button>
+                </div>
+                <div class="emoji-card" onclick="copyToClipboard(':sleeping:')">
+                    <div class="emoji-icon">😴</div>
+                    <div class="emoji-info">
+                        <div class="emoji-code">:sleeping:</div>
+                    </div>
+                    <button class="copy-btn"
+                        onclick="event.stopPropagation(); copyToClipboard(':sleeping:')">📋</button>
+                </div>
+                <div class="emoji-card" onclick="copyToClipboard(':worried:')">
+                    <div class="emoji-icon">😟</div>
+                    <div class="emoji-info">
+                        <div class="emoji-code">:worried:</div>
+                    </div>
+                    <button class="copy-btn" onclick="event.stopPropagation(); copyToClipboard(':worried:')">📋</button>
+                </div>
+                <div class="emoji-card" onclick="copyToClipboard(':frowning:')">
+                    <div class="emoji-icon">😦</div>
+                    <div class="emoji-info">
+                        <div class="emoji-code">:frowning:</div>
+                    </div>
+                    <button class="copy-btn"
+                        onclick="event.stopPropagation(); copyToClipboard(':frowning:')">📋</button>
+                </div>
+                <div class="emoji-card" onclick="copyToClipboard(':anguished:')">
+                    <div class="emoji-icon">😧</div>
+                    <div class="emoji-info">
+                        <div class="emoji-code">:anguished:</div>
+                    </div>
+                    <button class="copy-btn"
+                        onclick="event.stopPropagation(); copyToClipboard(':anguished:')">📋</button>
+                </div>
+                <div class="emoji-card" onclick="copyToClipboard(':open_mouth:')">
+                    <div class="emoji-icon">😮</div>
+                    <div class="emoji-info">
+                        <div class="emoji-code">:open_mouth:</div>
+                    </div>
+                    <button class="copy-btn"
+                        onclick="event.stopPropagation(); copyToClipboard(':open_mouth:')">📋</button>
+                </div>
+                <div class="emoji-card" onclick="copyToClipboard(':grimacing:')">
+                    <div class="emoji-icon">😬</div>
+                    <div class="emoji-info">
+                        <div class="emoji-code">:grimacing:</div>
+                    </div>
+                    <button class="copy-btn"
+                        onclick="event.stopPropagation(); copyToClipboard(':grimacing:')">📋</button>
+                </div>
+                <div class="emoji-card" onclick="copyToClipboard(':confused:')">
+                    <div class="emoji-icon">😕</div>
+                    <div class="emoji-info">
+                        <div class="emoji-code">:confused:</div>
+                    </div>
+                    <button class="copy-btn"
+                        onclick="event.stopPropagation(); copyToClipboard(':confused:')">📋</button>
+                </div>
+                <div class="emoji-card" onclick="copyToClipboard(':hushed:')">
+                    <div class="emoji-icon">😯</div>
+                    <div class="emoji-info">
+                        <div class="emoji-code">:hushed:</div>
+                    </div>
+                    <button class="copy-btn" onclick="event.stopPropagation(); copyToClipboard(':hushed:')">📋</button>
+                </div>
+                <div class="emoji-card" onclick="copyToClipboard(':expressionless:')">
+                    <div class="emoji-icon">😑</div>
+                    <div class="emoji-info">
+                        <div class="emoji-code">:expressionless:</div>
+                    </div>
+                    <button class="copy-btn"
+                        onclick="event.stopPropagation(); copyToClipboard(':expressionless:')">📋</button>
+                </div>
+                <div class="emoji-card" onclick="copyToClipboard(':unamused:')">
+                    <div class="emoji-icon">😒</div>
+                    <div class="emoji-info">
+                        <div class="emoji-code">:unamused:</div>
+                    </div>
+                    <button class="copy-btn"
+                        onclick="event.stopPropagation(); copyToClipboard(':unamused:')">📋</button>
+                </div>
+                <div class="emoji-card" onclick="copyToClipboard(':sweat_smile:')">
+                    <div class="emoji-icon">😅</div>
+                    <div class="emoji-info">
+                        <div class="emoji-code">:sweat_smile:</div>
+                    </div>
+                    <button class="copy-btn"
+                        onclick="event.stopPropagation(); copyToClipboard(':sweat_smile:')">📋</button>
+                </div>
+                <div class="emoji-card" onclick="copyToClipboard(':sweat:')">
+                    <div class="emoji-icon">😓</div>
+                    <div class="emoji-info">
+                        <div class="emoji-code">:sweat:</div>
+                    </div>
+                    <button class="copy-btn" onclick="event.stopPropagation(); copyToClipboard(':sweat:')">📋</button>
+                </div>
+                <div class="emoji-card" onclick="copyToClipboard(':weary:')">
+                    <div class="emoji-icon">😩</div>
+                    <div class="emoji-info">
+                        <div class="emoji-code">:weary:</div>
+                    </div>
+                    <button class="copy-btn" onclick="event.stopPropagation(); copyToClipboard(':weary:')">📋</button>
+                </div>
+                <div class="emoji-card" onclick="copyToClipboard(':pensive:')">
+                    <div class="emoji-icon">😔</div>
+                    <div class="emoji-info">
+                        <div class="emoji-code">:pensive:</div>
+                    </div>
+                    <button class="copy-btn" onclick="event.stopPropagation(); copyToClipboard(':pensive:')">📋</button>
+                </div>
+                <div class="emoji-card" onclick="copyToClipboard(':disappointed:')">
+                    <div class="emoji-icon">😞</div>
+                    <div class="emoji-info">
+                        <div class="emoji-code">:disappointed:</div>
+                    </div>
+                    <button class="copy-btn"
+                        onclick="event.stopPropagation(); copyToClipboard(':disappointed:')">📋</button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" onclick="scrollToTop()" aria-label="Voltar ao topo">
+        ⬆️
+    </button>
+
+    <!-- Footer -->
+    <footer>
+        <a href="https://meuweb.site" target="_blank">🌐 Precisa de um Site?</a>
+
+
+        <p style="margin-top: 0.5rem; font-size: 0.9rem;">
+            <a href="https://github.com/igorlazzaretti/emojit-emojis-for-git" target="_blank"
+                style="color: var(--text-secondary); text-decoration: none;">
+                ⭐ Dê uma estrela no GitHub
+            </a>
         </p>
-    </header>
 
-    <h2>Lista de Emojis</h2>
-    <p>Você encontrou sua lista completa de emojis para usar nos seus commits. Por exemplo:</p>
-    <pre>git commit -m "🙏 Socorroo!!"</pre>
+        <p>Criado com ❤️ por <a href="https://igorlazzaretti.com" target="_blank">Igor Lazzaretti</a></p>
 
-    <h3>Lista de Emojis para Commits</h3>
-    <h4 style="margin-top: -20px; margin-left: 5vw; font-size: small;"><i>Clique em<span class="copy-icon"
-                onclick="alert('Errooo... É neste emoji mesmo, mas escolha dentro da tabela. ')">📋</span> para copiar o
-            código para commit.</i></h4>
+    </footer>
 
-    <table>
-        <tr>
-            <td><b>Initial Commit</b></td>
-            <td><b>Commit Inicial</b></td>
-            <td>🎉 :tada: <span class="copy-icon" onclick="copyToClipboard(':tada:')">📋</span></td>
-        </tr>
-        <tr>
-            <td><b>Version Tag</b></td>
-            <td><b>Tag de Versão</b></td>
-            <td>🔖 :bookmark: <span class="copy-icon" onclick="copyToClipboard(':bookmark:')">📋</span></td>
-        </tr>
-        <tr>
-            <td><b>New Feature</b></td>
-            <td><b>Nova Funcionalidade</b></td>
-            <td>✨ :sparkles: <span class="copy-icon" onclick="copyToClipboard(':sparkles:')">📋</span></td>
-        </tr>
-        <tr>
-            <td><b>Bug Fix</b></td>
-            <td><b>Correção de Bug</b></td>
-            <td>🐛 :bug: <span class="copy-icon" onclick="copyToClipboard(':bug:')">📋</span></td>
-        </tr>
-        <tr>
-            <td><b>Metadata</b></td>
-            <td><b>Metadados</b></td>
-            <td>📇 :card_index: <span class="copy-icon" onclick="copyToClipboard(':card_index:')">📋</span></td>
-        </tr>
-        <tr>
-            <td><b>Documentation</b></td>
-            <td><b>Documentação</b></td>
-            <td>📚 :books: <span class="copy-icon" onclick="copyToClipboard(':books:')">📋</span></td>
-        </tr>
-        <tr>
-            <td><b>Documenting Source Code</b></td>
-            <td><b>Documentando Código Fonte</b></td>
-            <td>💡 :bulb: <span class="copy-icon" onclick="copyToClipboard(':bulb:')">📋</span></td>
-        </tr>
-        <tr>
-            <td><b>Performance</b></td>
-            <td><b>Desempenho</b></td>
-            <td>🐎 :racehorse: <span class="copy-icon" onclick="copyToClipboard(':racehorse:')">📋</span></td>
-        </tr>
-        <tr>
-            <td><b>Style</b></td>
-            <td><b>Estética</b></td>
-            <td>💄 :lipstick: <span class="copy-icon" onclick="copyToClipboard(':lipstick:')">📋</span></td>
-        </tr>
-        <tr>
-            <td><b>Tests</b></td>
-            <td><b>Testes</b></td>
-            <td>🚨 :rotating_light: <span class="copy-icon" onclick="copyToClipboard(':rotating_light:')">📋</span></td>
-        </tr>
-        <tr>
-            <td><b>Adding Tests</b></td>
-            <td><b>Adicionando Teste</b></td>
-            <td>✅ :white_check_mark: <span class="copy-icon" onclick="copyToClipboard(':white_check_mark:')">📋</span>
-            </td>
-        </tr>
-        <tr>
-            <td><b>Fixing Tests</b></td>
-            <td><b>Corrigindo Teste</b></td>
-            <td>✔️ :heavy_check_mark: <span class="copy-icon" onclick="copyToClipboard(':heavy_check_mark:')">📋</span>
-            </td>
-        </tr>
-        <tr>
-            <td><b>General Update</b></td>
-            <td><b>Atualização Geral</b></td>
-            <td>⚡ :zap: <span class="copy-icon" onclick="copyToClipboard(':zap:')">📋</span></td>
-        </tr>
-        <tr>
-            <td><b>Improve Format/Structure</b></td>
-            <td><b>Melhorar Formato/Estrutura</b></td>
-            <td>🎨 :art: <span class="copy-icon" onclick="copyToClipboard(':art:')">📋</span></td>
-        </tr>
-        <tr>
-            <td><b>Code Refactoring</b></td>
-            <td><b>Refatoração de Código</b></td>
-            <td>🔨 :hammer: <span class="copy-icon" onclick="copyToClipboard(':hammer:')">📋</span></td>
-        </tr>
-        <tr>
-            <td><b>Removing Code/Files</b></td>
-            <td><b>Removendo Código/Arquivos</b></td>
-            <td>🔥 :fire: <span class="copy-icon" onclick="copyToClipboard(':fire:')">📋</span></td>
-        </tr>
-        <tr>
-            <td><b>Continuous Integration</b></td>
-            <td><b>Integração Contínua</b></td>
-            <td>💚 :green_heart: <span class="copy-icon" onclick="copyToClipboard(':green_heart:')">📋</span></td>
-        </tr>
-        <tr>
-            <td><b>Security</b></td>
-            <td><b>Segurança</b></td>
-            <td>🔒 :lock: <span class="copy-icon" onclick="copyToClipboard(':lock:')">📋</span></td>
-        </tr>
-        <tr>
-            <td><b>Updating Dependencies</b></td>
-            <td><b>Atualizando Dependências</b></td>
-            <td>⬆️ :arrow_up: <span class="copy-icon" onclick="copyToClipboard(':arrow_up:')">📋</span></td>
-        </tr>
-        <tr>
-            <td><b>Downgrading Dependencies</b></td>
-            <td><b>Rebaixando Dependências</b></td>
-            <td>⬇️ :arrow_down: <span class="copy-icon" onclick="copyToClipboard(':arrow_down:')">📋</span></td>
-        </tr>
-        <tr>
-            <td><b>Lint</b></td>
-            <td><b>Lint</b></td>
-            <td>👕 :shirt: <span class="copy-icon" onclick="copyToClipboard(':shirt:')">📋</span></td>
-        </tr>
-        <tr>
-            <td><b>Translation</b></td>
-            <td><b>Tradução</b></td>
-            <td>👽 :alien: <span class="copy-icon" onclick="copyToClipboard(':alien:')">📋</span></td>
-        </tr>
-        <tr>
-            <td><b>Text</b></td>
-            <td><b>Texto</b></td>
-            <td>✏️ :pencil: <span class="copy-icon" onclick="copyToClipboard(':pencil:')">📋</span></td>
-        </tr>
-        <tr>
-            <td><b>Critical Hotfix</b></td>
-            <td><b>Hotfix Crítico</b></td>
-            <td>🚑 :ambulance: <span class="copy-icon" onclick="copyToClipboard(':ambulance:')">📋</span></td>
-        </tr>
-        <tr>
-            <td><b>Deploy</b></td>
-            <td><b>Deploy</b></td>
-            <td>🚀 :rocket: <span class="copy-icon" onclick="copyToClipboard(':rocket:')">📋</span></td>
-        </tr>
-        <tr>
-            <td><b>Fixing on macOS</b></td>
-            <td><b>Corrigindo no MacOS</b></td>
-            <td>🍎 :apple: <span class="copy-icon" onclick="copyToClipboard(':apple:')">📋</span></td>
-        </tr>
-        <tr>
-            <td><b>Fixing on Linux</b></td>
-            <td><b>Corrigindo no Linux</b></td>
-            <td>🐧 :penguin: <span class="copy-icon" onclick="copyToClipboard(':penguin:')">📋</span></td>
-        </tr>
-        <tr>
-            <td><b>Fixing on Windows</b></td>
-            <td><b>Corrigindo no Windows</b></td>
-            <td>🏁 :checkered_flag: <span class="copy-icon" onclick="copyToClipboard(':checkered_flag:')">📋</span></td>
-        </tr>
-        <tr>
-            <td><b>Work in Progress</b></td>
-            <td><b>Trabalho em Progresso</b></td>
-            <td>🚧 :construction: <span class="copy-icon" onclick="copyToClipboard(':construction:')">📋</span></td>
-        </tr>
-        <tr>
-            <td><b>Adding CI Build System</b></td>
-            <td><b>Adicionando Sistema de Build CI</b></td>
-            <td>👷 :construction_worker: <span class="copy-icon"
-                    onclick="copyToClipboard(':construction_worker:')">📋</span></td>
-        </tr>
-        <tr>
-            <td><b>Analytics/Tracking Code</b></td>
-            <td><b>Código de Análise/Rastreamento</b></td>
-            <td>📈 :chart_with_upwards_trend: <span class="copy-icon"
-                    onclick="copyToClipboard(':chart_with_upwards_trend:')">📋</span></td>
-        </tr>
-        <tr>
-            <td><b>Removing Dependency</b></td>
-            <td><b>Removendo Dependência</b></td>
-            <td>➖ :heavy_minus_sign: <span class="copy-icon" onclick="copyToClipboard(':heavy_minus_sign:')">📋</span>
-            </td>
-        </tr>
-        <tr>
-            <td><b>Adding Dependency</b></td>
-            <td><b>Adicionando Dependência</b></td>
-            <td>➕ :heavy_plus_sign: <span class="copy-icon" onclick="copyToClipboard(':heavy_plus_sign:')">📋</span>
-            </td>
-        </tr>
-        <tr>
-            <td><b>Docker</b></td>
-            <td><b>Docker</b></td>
-            <td>🐋 :whale: <span class="copy-icon" onclick="copyToClipboard(':whale:')">📋</span></td>
-        </tr>
-        <tr>
-            <td><b>Configuration Files</b></td>
-            <td><b>Arquivos de Configuração</b></td>
-            <td>🔧 :wrench: <span class="copy-icon" onclick="copyToClipboard(':wrench:')">📋</span></td>
-        </tr>
-        <tr>
-            <td><b>Package.json</b></td>
-            <td><b>Package.json no JS</b></td>
-            <td>📦 :package: <span class="copy-icon" onclick="copyToClipboard(':package:')">📋</span></td>
-        </tr>
-        <tr>
-            <td><b>Merging Branches</b></td>
-            <td><b>Mesclando Branches</b></td>
-            <td>🔀 :twisted_rightwards_arrows: <span class="copy-icon"
-                    onclick="copyToClipboard(':twisted_rightwards_arrows:')">📋</span></td>
-        </tr>
-        <tr>
-            <td><b>Bad Code/Needs Improvement</b></td>
-            <td><b>Código Ruim/Precisa Melhorar</b></td>
-            <td>💩 :hankey: <span class="copy-icon" onclick="copyToClipboard(':hankey:')">📋</span></td>
-        </tr>
-        <tr>
-            <td><b>Reverting Changes</b></td>
-            <td><b>Revertendo Mudanças</b></td>
-            <td>⏪ :rewind: <span class="copy-icon" onclick="copyToClipboard(':rewind:')">📋</span></td>
-        </tr>
-        <tr>
-            <td><b>Breaking Changes</b></td>
-            <td><b>Mudanças Quebrando o Código</b></td>
-            <td>💥 :boom: <span class="copy-icon" onclick="copyToClipboard(':boom:')">📋</span></td>
-        </tr>
-        <tr>
-            <td><b>After Code Review</b></td>
-            <td><b>Mudanças após Code Review</b></td>
-            <td>👌 :ok_hand: <span class="copy-icon" onclick="copyToClipboard(':ok_hand:')">📋</span></td>
-        </tr>
-        <tr>
-            <td><b>Accessibility</b></td>
-            <td><b>Acessibilidade</b></td>
-            <td>♿ :wheelchair: <span class="copy-icon" onclick="copyToClipboard(':wheelchair:')">📋</span></td>
-        </tr>
-        <tr>
-            <td><b>Move/Rename Repository</b></td>
-            <td><b>Mover/Renomear Repositório</b></td>
-            <td>🚚 :truck: <span class="copy-icon" onclick="copyToClipboard(':truck:')">📋</span></td>
-        </tr>
-    </table>
+    <!-- Floating Theme Toggle -->
+    <button class="theme-toggle-btn" onclick="toggleTheme()" aria-label="Alternar tema">
+        <span id="theme-icon">☀️</span>
+    </button>
 
 
-    <h3>Lista Completa de Emojis</h3>
-    <h4 style="margin-top: -20px; margin-left: 5vw; font-size: small;"><i>Clique em<span class="copy-icon"
-                onclick="alert('Errooo... É neste emoji mesmo, mas escolha dentro da tabela. ')">📋</span> para copiar o
-            código para commit.</i></h4>
-    <h5>Lista Completa no GitHub <a href="https://github.com/igorlazzaretti/emojit-emojis-for-git"
-            target="_blank">aqui</a></h5>
-
-    <table>
-        <tr>
-            <td>😄 :smile: <span class="copy-icon" onclick="copyToClipboard(':smile:')">📋</span></td>
-            <td>😆 :laughing: <span class="copy-icon" onclick="copyToClipboard(':laughing:')">📋</span></td>
-            <td>😊 :blush: <span class="copy-icon" onclick="copyToClipboard(':blush:')">📋</span></td>
-        </tr>
-        <tr>
-            <td>😃 :smiley: <span class="copy-icon" onclick="copyToClipboard(':smiley:')">📋</span></td>
-            <td>☺️ :relaxed: <span class="copy-icon" onclick="copyToClipboard(':relaxed:')">📋</span></td>
-            <td>😏 :smirk: <span class="copy-icon" onclick="copyToClipboard(':smirk:')">📋</span></td>
-        </tr>
-        <tr>
-            <td>😍 :heart_eyes: <span class="copy-icon" onclick="copyToClipboard(':heart_eyes:')">📋</span></td>
-            <td>😘 :kissing_heart: <span class="copy-icon" onclick="copyToClipboard(':kissing_heart:')">📋</span></td>
-            <td>😚 :kissing_closed_eyes: <span class="copy-icon"
-                    onclick="copyToClipboard(':kissing_closed_eyes:')">📋</span></td>
-        </tr>
-        <tr>
-            <td>😳 :flushed: <span class="copy-icon" onclick="copyToClipboard(':flushed:')">📋</span></td>
-            <td>😌 :relieved: <span class="copy-icon" onclick="copyToClipboard(':relieved:')">📋</span></td>
-            <td>😁 :grin: <span class="copy-icon" onclick="copyToClipboard(':grin:')">📋</span></td>
-        </tr>
-        <tr>
-            <td>😉 :wink: <span class="copy-icon" onclick="copyToClipboard(':wink:')">📋</span></td>
-            <td>😜 :stuck_out_tongue_winking_eye: <span class="copy-icon"
-                    onclick="copyToClipboard(':stuck_out_tongue_winking_eye:')">📋</span></td>
-            <td>😝 :stuck_out_tongue_closed_eyes: <span class="copy-icon"
-                    onclick="copyToClipboard(':stuck_out_tongue_closed_eyes:')">📋</span></td>
-        </tr>
-        <tr>
-            <td>😀 :grinning: <span class="copy-icon" onclick="copyToClipboard(':grinning:')">📋</span></td>
-            <td>😗 :kissing: <span class="copy-icon" onclick="copyToClipboard(':kissing:')">📋</span></td>
-            <td>😙 :kissing_smiling_eyes: <span class="copy-icon"
-                    onclick="copyToClipboard(':kissing_smiling_eyes:')">📋</span></td>
-        </tr>
-        <tr>
-            <td>😛 :stuck_out_tongue: <span class="copy-icon" onclick="copyToClipboard(':stuck_out_tongue:')">📋</span>
-            </td>
-            <td>😴 :sleeping: <span class="copy-icon" onclick="copyToClipboard(':sleeping:')">📋</span></td>
-            <td>😟 :worried: <span class="copy-icon" onclick="copyToClipboard(':worried:')">📋</span></td>
-        </tr>
-        <tr>
-            <td>😦 :frowning: <span class="copy-icon" onclick="copyToClipboard(':frowning:')">📋</span></td>
-            <td>😧 :anguished: <span class="copy-icon" onclick="copyToClipboard(':anguished:')">📋</span></td>
-            <td>😮 :open_mouth: <span class="copy-icon" onclick="copyToClipboard(':open_mouth:')">📋</span></td>
-        </tr>
-        <tr>
-            <td>😬 :grimacing: <span class="copy-icon" onclick="copyToClipboard(':grimacing:')">📋</span></td>
-            <td>😕 :confused: <span class="copy-icon" onclick="copyToClipboard(':confused:')">📋</span></td>
-            <td>😯 :hushed: <span class="copy-icon" onclick="copyToClipboard(':hushed:')">📋</span></td>
-        </tr>
-        <tr>
-            <td>😑 :expressionless: <span class="copy-icon" onclick="copyToClipboard(':expressionless:')">📋</span></td>
-            <td>😒 :unamused: <span class="copy-icon" onclick="copyToClipboard(':unamused:')">📋</span></td>
-            <td>😅 :sweat_smile: <span class="copy-icon" onclick="copyToClipboard(':sweat_smile:')">📋</span></td>
-        </tr>
-        <tr>
-            <td>😓 :sweat: <span class="copy-icon" onclick="copyToClipboard(':sweat:')">📋</span></td>
-            <td>😩 :weary: <span class="copy-icon" onclick="copyToClipboard(':weary:')">📋</span></td>
-            <td>😔 :pensive: <span class="copy-icon" onclick="copyToClipboard(':pensive:')">📋</span></td>
-        </tr>
-        <tr>
-            <td>😞 :disappointed: <span class="copy-icon" onclick="copyToClipboard(':disappointed:')">📋</span></td>
-        </tr>
-    </table>
-
-    <script>
-        // Adicionar antes das outras funções
-        window.addEventListener('scroll', function () {
-            const topButton = document.querySelector('#top');
-            if (window.scrollY > 300) { // Mostrar botão depois de rolar 300px
-                topButton.style.display = 'block';
-            } else {
-                topButton.style.display = 'none';
-            }
-        });
-
-        function toggleDarkMode() {
-            document.body.classList.toggle('dark-mode');
-            const toggleIcon = document.querySelector('.dark-mode-toggle');
-            toggleIcon.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
-        }
-
-        function copyToClipboard(text) {
-            navigator.clipboard.writeText(text).then(() => {
-                // Create the alert div
-                const alertDiv = document.createElement('div');
-                alertDiv.classList.add('alert', 'alert-success');
-                alertDiv.setAttribute('role', 'alert');
-                alertDiv.innerHTML = `Copiado: <strong>${text}</strong>`;
-
-                // Append the alert div to the body
-                document.body.appendChild(alertDiv);
-
-                // Set timeout to remove the alert
-                setTimeout(() => {
-                    alertDiv.remove();
-                }, 3000); // Adjust time as needed
-            }).catch(err => {
-                console.error('Erro ao copiar: ', err);
-            });
-        }
-        document.querySelector('#top').addEventListener('click', function () {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-    </script>
+    <!-- JavaScript -->
+    <script src="script.js"></script>
 </body>
 
 </html>
