@@ -2,7 +2,7 @@
 Git Commit
 
 :sparkles: Emogit 2.0
-Commit Message: OG
+Commit Message: Footer
 
  -->
 
