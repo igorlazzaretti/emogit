@@ -562,3 +562,121 @@ window.emojiGit = {
     printPage,
     getEmojiStats
 };
+
+
+// ===========================================
+// Markdown Script
+// ===========================================
+  function copyToClipboard(text) {
+    if (navigator.clipboard?.writeText) {
+      navigator.clipboard.writeText(text);
+      return;
+    }
+    // fallback simples
+    const ta = document.createElement("textarea");
+    ta.value = text;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand("copy");
+    document.body.removeChild(ta);
+  }
+
+  function extractShortcodesFromMarkdown(md) {
+    // pega :smile:, :+1:, :-1:, etc.
+    const re = /:([+\w-]+):/g;
+    const found = [];
+    const seen = new Set();
+
+    let m;
+    while ((m = re.exec(md)) !== null) {
+      const code = m[1];
+      // evita pegar coisas como :---: se aparecerem em algum lugar
+      if (!code || code === "---") continue;
+
+      if (!seen.has(code)) {
+        seen.add(code);
+        found.push(code);
+      }
+    }
+    return found;
+  }
+
+  async function loadGithubEmojiMap() {
+    // Mapa { smile: "https://...png", ... }
+    const res = await fetch("https://api.github.com/emojis");
+    if (!res.ok) throw new Error("Falha ao carregar emojis do GitHub API");
+    return res.json();
+  }
+
+  function createEmojiCard({ shortcode, imgUrl }) {
+    const card = document.createElement("div");
+    card.className = "emoji-card";
+    card.addEventListener("click", () => copyToClipboard(`:${shortcode}:`));
+
+    const icon = document.createElement("div");
+    icon.className = "emoji-icon";
+
+    // usando imagem do GitHub (cobre também :shipit:, :bowtie:, etc.)
+    const img = document.createElement("img");
+    img.src = imgUrl;
+    img.alt = `:${shortcode}:`;
+    img.width = 28;
+    img.height = 28;
+    img.loading = "lazy";
+    icon.appendChild(img);
+
+    const info = document.createElement("div");
+    info.className = "emoji-info";
+
+    const codeDiv = document.createElement("div");
+    codeDiv.className = "emoji-code";
+    codeDiv.textContent = `:${shortcode}:`;
+
+    info.appendChild(codeDiv);
+
+    const btn = document.createElement("button");
+    btn.className = "copy-btn";
+    btn.type = "button";
+    btn.textContent = "📋";
+    btn.addEventListener("click", (event) => {
+      event.stopPropagation();
+      copyToClipboard(`:${shortcode}:`);
+    });
+
+    card.appendChild(icon);
+    card.appendChild(info);
+    card.appendChild(btn);
+
+    return card;
+  }
+
+  async function renderEmojiGridFromMarkdown(md, gridEl) {
+    const shortcodes = extractShortcodesFromMarkdown(md);
+    const emojiMap = await loadGithubEmojiMap();
+
+    const frag = document.createDocumentFragment();
+
+    for (const sc of shortcodes) {
+      const imgUrl = emojiMap[sc];
+      if (!imgUrl) {
+        // shortcode não encontrado no mapa do GitHub (raro)
+        continue;
+      }
+      frag.appendChild(createEmojiCard({ shortcode: sc, imgUrl }));
+    }
+
+    gridEl.innerHTML = "";
+    gridEl.appendChild(frag);
+  }
+
+  // ---- Inicialização ----
+  document.addEventListener("DOMContentLoaded", async () => {
+    const grid = document.getElementById("emojiGrid");
+
+    // Opção A: lê de <script type="text/plain" id="emojiMarkdown">
+    const mdEl = document.getElementById("emojiMarkdown");
+    const md = mdEl ? mdEl.textContent : "";
+
+    // Se você preferir, pode também setar md = `...` direto no JS
+    await renderEmojiGridFromMarkdown(md, grid);
+  });
