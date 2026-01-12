@@ -2,7 +2,7 @@
 Git Commit
 
 :sparkles: Emogit 2.0
-Commit Message: Lista completa em Markdown com JS
+Commit Message: Favicon
 
  -->
 
